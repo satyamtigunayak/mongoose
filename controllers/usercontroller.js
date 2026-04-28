@@ -1,5 +1,7 @@
 import user from "../model/usermodel.js";
 
+// get api
+
 export const getuser= async(req,res)=>{
     try{
       const users= await user.find()
@@ -7,4 +9,19 @@ export const getuser= async(req,res)=>{
     } catch(error){
       res.status(500).json({Message:'error fetching user',error})
     }
+}
+
+// post api
+
+export const craeteuser=async(req,res)=>{
+  try{
+   const newuser= new user(req.body)
+   const result= await newuser.save()
+   res.status(201).json({
+    message:'user created successfully',
+    data:result
+   })
+  }catch(error){
+   res.status(404).json('user not created',error)
+  }
 }

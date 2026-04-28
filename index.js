@@ -41,15 +41,12 @@ import router from "./routes/userroutes.js";
 const app=express();
 
 // connect to database
-
 dbconnection();
 
 //middleware
-
 app.use(express.json());
 
 // user routes
-
 app.use('/api',router)
 
 app.listen(3000,()=>{
