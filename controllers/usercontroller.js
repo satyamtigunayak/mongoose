@@ -25,3 +25,23 @@ export const craeteuser=async(req,res)=>{
    res.status(404).json('user not created',error)
   }
 }
+
+// patch api  edit all user
+
+export const edituser= async(req,res)=>{
+    try{
+       const{id}=req.params
+       const updateuser= await user.findByIdAndUpdate(id,req.body,{
+        returnDocument: 'after',
+        overwrite:true
+       })
+       res.status(200).json({
+        message:'update successfully',
+        data:updateuser
+       })
+
+    } catch(error){
+         res.status(500).json({message:"Error updating user",error})
+    }
+}
+
