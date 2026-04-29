@@ -45,3 +45,20 @@ export const edituser= async(req,res)=>{
     }
 }
 
+// Delete api 
+
+
+export const deleteuserdata= async(req,res)=>{
+  try{
+      const{id}=req.params;
+      const deleteuser= await user.findByIdAndDelete(id)
+      if(!deleteuser){
+        res.status(404).json({message:"user not deleted"})
+      }
+      res.status(200).json({
+        message:' deleted successfully'
+      })
+  } catch(error){
+    res.status(500).json({message:"user not deleted",error})
+  }
+}
